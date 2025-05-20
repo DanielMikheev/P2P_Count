@@ -1,0 +1,65 @@
+//
+//  OneCurrencyPresenter.swift
+//  P2PCount
+//
+//  Created by Dany on 03.05.2025.
+//
+
+import UIKit
+import Foundation
+
+protocol OneCurrencyPresenterProtocol: AnyObject {
+    func countSpreadAndProfit()
+    func resetAllField()
+    func addHistoryCircles()
+}
+
+final class OneCurrencyPresenter: OneCurrencyPresenterProtocol {
+    
+    weak var view: OneCurrencyViewControllerProtocol?
+    
+    init(view: OneCurrencyViewControllerProtocol?) {
+        self.view = view
+    }
+    
+    func addHistoryCircles(){
+        NotificationCenter.default.post(name: .addCircle, object: nil, userInfo: [String.add : AddCircles.one])
+    }
+    
+    
+    
+    func countSpreadAndProfit(){
+        guard let bank = self.view?.bankTextField.text, !bank.isEmpty else { return }
+        guard let sellPriceText = self.view?.sellPrice.text, !sellPriceText.isEmpty else { return }
+        guard let buyPriceText = self.view?.buyPrice.text, !buyPriceText.isEmpty else { return }
+        guard let sellCommision = self.view?.sellCommision.text, !sellCommision.isEmpty else { return }
+        guard let buyCommision = self.view?.buyCommision.text, !buyCommision.isEmpty else { return }
+        
+        if let sell = Float(sellPriceText), let buy = Float(buyPriceText), let sellCom = Float(sellCommision), let buyCom = Float(buyCommision), let money = Float(bank){
+            
+            let spreadPercent: Float = ((sell * (1 - sellCom))/(buy * (1 - buyCom)) - 1)
+            let spreadPercentNew = String(format: "%.2f", (spreadPercent * 100))
+            let moneyProfit: Int = Int(money * (spreadPercent))
+            
+            self.view?.spreadPercentProfit.font = UIFont(name: "K2D-Bold", size: 18)
+            self.view?.moneyProfit.font = UIFont(name: "K2D-Bold", size: 18)
+            self.view?.spreadPercentProfit.text = "\(spreadPercentNew)"
+            self.view?.moneyProfit.text = "\(moneyProfit)"
+
+            
+        }else{
+            print("Заполните все поля!")
+        }
+        
+    }
+    
+    func resetAllField(){
+        self.view?.bankTextField.text? = ""
+        self.view?.sellCurrencyPair.text? = ""
+        self.view?.buyCurrencyPair.text? = ""
+        self.view?.sellPrice.text? = ""
+        self.view?.buyPrice.text? = ""
+        self.view?.sellCommision.text? = ""
+        self.view?.buyCommision.text? = ""
+    }
+}
