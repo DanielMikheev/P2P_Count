@@ -46,6 +46,7 @@ class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
     lazy var historyCollectionView: UICollectionView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
+        $0.clipsToBounds = true
         $0.register(OneCellHistoryView.self, forCellWithReuseIdentifier: OneCellHistoryView.reuseIdentifier)
         return $0
     }(UICollectionView(frame: .zero, collectionViewLayout: setLayout()))
@@ -72,7 +73,6 @@ class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 141, leading: 40, bottom: 144, trailing: 40)
             section.interGroupSpacing = 100
-            section.orthogonalScrollingBehavior = .groupPagingCentered
             return section
         }
         

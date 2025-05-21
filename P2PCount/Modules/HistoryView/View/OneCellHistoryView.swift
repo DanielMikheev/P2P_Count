@@ -115,8 +115,8 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
     
     lazy var buyNameExchange = createTextLabel(text: "Bybit", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
     lazy var buyNameCurrencyPair = createTextLabel(text: "RUB/USDT", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var buyPrice = createTextLabel(text: "90.4", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var buyCommision = createTextLabel(text: "0.1", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var buyPrice = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var buyCommision = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
     
     //third column stack
     lazy var sellLabel: UILabel = {
@@ -134,8 +134,8 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
     
     lazy var sellNameExchange = createTextLabel(text: "OKX", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
     lazy var sellNameCurrencyPair = createTextLabel(text: "USDT/RUB", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var sellPrice = createTextLabel(text: "92.5", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var sellCommision = createTextLabel(text: "0.1", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var sellPrice = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var sellCommision = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
     
     //profit value labels
     
@@ -182,7 +182,10 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
     
     
     func setData(data: HistoryItem){
-        date.text = "Date: \(self.setDate())"
+        self.buyPrice.text = data.buyPrice
+        self.buyCommision.text = data.buyCommision
+        self.sellPrice.text = data.sell
+        self.sellCommision.text = data.sellCommision
     }
 
     
