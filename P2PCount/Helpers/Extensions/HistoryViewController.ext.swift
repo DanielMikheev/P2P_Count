@@ -21,8 +21,4 @@ extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDel
             return cell
        
     }
-    
-    
-
-    
 }

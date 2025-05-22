@@ -20,8 +20,7 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
     
     //views
     weak var view: HistoryViewControllerProtocol?
-    var oneView = OneCurrencyViewController()
-    weak var multiView: MultiCurrencyViewControllerProtocol?
+
     
     //data and context
     var allItems: [HistoryItem] = []
@@ -66,6 +65,8 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
                 let oneNewData = HistoryItem(date: "Date: \(oneDate)",
                                             buy: "Buy",
                                             sell: "Sell",
+                                            buyNameExchange: "Bybit",
+                                            sellNameExchange: "OKX",
                                             buyCurrencyPair: "\(buyPair)",
                                             sellCurrencyPair: "\(sellPair)",
                                             buyPrice: "\(buyPrice)",
@@ -81,7 +82,38 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
                 self.context = .one
             case .multi:
                 let multiDate = setupCurrentDate()
-                let multiNewData = HistoryItem(date: "Date: \(multiDate)",buyPrice: "93.25", buyCommision: "0.1")
+                
+                // Получаем данные из userInfo
+                guard let buyPair = userInfo["buyPair"] as? String,
+                      let swapPair = userInfo["swapPair"] as? String,
+                      let sellPair = userInfo["sellPair"] as? String,
+                      let buyPrice = userInfo["buyPrice"] as? String,
+                      let swapPrice = userInfo["swapPrice"] as? String,
+                      let sellPrice = userInfo["sellPrice"] as? String,
+                      let buyComission = userInfo["buyComission"] as? String,
+                      let swapComission = userInfo["swapComission"] as? String,
+                      let sellComission = userInfo["sellComission"] as? String,
+                      let spreadPercentProfit = userInfo["spreadPercentProfit"] as? String,
+                      let moneyProfit = userInfo["moneyProfit"] as? String else { return }
+                
+                let multiNewData = HistoryItem(date: "Date: \(multiDate)",
+                                            buy: "Buy",
+                                            swap: "Swap",
+                                            sell: "Sell",
+                                            buyNameExchange: "Binance",
+                                            swapNameExchange: "OKX",
+                                            sellNameExchange: "Arkham",
+                                            buyCurrencyPair: "\(buyPair)",
+                                            swapCurrencyPair: "\(swapPair)",
+                                            sellCurrencyPair: "\(sellPair)",
+                                            buyPrice: "\(buyPrice)",
+                                            swapPrice: "\(swapPrice)",
+                                            sellPrice: "\(sellPrice)",
+                                            buyCommision: "\(buyComission)",
+                                            swapCommision: "\(swapComission)",
+                                            sellCommision: "\(sellComission)",
+                                            profitAndSpreadResult: "\(moneyProfit) $ / \(spreadPercentProfit) %")
+                
                 let multiNewIndexPath = IndexPath(item: allItems.count, section: 0)
                 allItems.append(multiNewData)
                 self.view?.historyCollectionView.insertItems(at: [multiNewIndexPath])

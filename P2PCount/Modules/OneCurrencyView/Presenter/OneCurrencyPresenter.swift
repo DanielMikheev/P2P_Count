@@ -10,7 +10,7 @@ import Foundation
 
 protocol OneCurrencyPresenterProtocol: AnyObject {
     func countSpreadAndProfit()
-    func resetAllField()
+    func resetAllFields()
     func addHistoryCircles()
 }
 
@@ -43,11 +43,11 @@ final class OneCurrencyPresenter: OneCurrencyPresenterProtocol {
     
     
     func countSpreadAndProfit(){
-        guard let bank = self.view?.bankTextField.text, !bank.isEmpty else { return }
-        guard let sellPriceText = self.view?.sellPrice.text, !sellPriceText.isEmpty else { return }
-        guard let buyPriceText = self.view?.buyPrice.text, !buyPriceText.isEmpty else { return }
-        guard let sellCommision = self.view?.sellCommision.text, !sellCommision.isEmpty else { return }
-        guard let buyCommision = self.view?.buyCommision.text, !buyCommision.isEmpty else { return }
+        guard let bank = self.view?.bankTextField.text, !bank.isEmpty,
+              let sellPriceText = self.view?.sellPrice.text, !sellPriceText.isEmpty,
+              let buyPriceText = self.view?.buyPrice.text, !buyPriceText.isEmpty,
+              let sellCommision = self.view?.sellCommision.text, !sellCommision.isEmpty,
+              let buyCommision = self.view?.buyCommision.text, !buyCommision.isEmpty else { return }
         
         if let sell = Float(sellPriceText), let buy = Float(buyPriceText), let sellCom = Float(sellCommision), let buyCom = Float(buyCommision), let money = Float(bank){
             
@@ -67,7 +67,7 @@ final class OneCurrencyPresenter: OneCurrencyPresenterProtocol {
         
     }
     
-    func resetAllField(){
+    func resetAllFields(){
         self.view?.bankTextField.text? = ""
         self.view?.sellCurrencyPair.text? = ""
         self.view?.buyCurrencyPair.text? = ""

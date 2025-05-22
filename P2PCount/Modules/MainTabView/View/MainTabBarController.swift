@@ -13,6 +13,7 @@ protocol MainTabBarControllerProtocol: AnyObject {
 class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
     
     var presenter: MainTabBarPresenterProtocol!
+
     //controllers
     private let oneVC = Builder.createOneCurrencyView() as! OneCurrencyViewController
     private let multiVC = Builder.createMultiCurrencyView() as! MultiCurrencyViewController
@@ -23,7 +24,8 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
     private lazy var oneBtn: UIButton = setButton(icon: "ic-one", tag: 0, action: action)
     private lazy var multiBtn: UIButton = setButton(icon: "ic-multi", tag: 1, action: action)
     private lazy var historyBtn: UIButton = setButton(icon: "ic-history", tag: 2, action: action)
-    private lazy var resetBtn: UIButton = setButton(icon: "ic-reset", tag: 3, action: resetAction)
+    private lazy var resetBtn: UIButton = setResetButton(icon: "ic-reset", action: resetAction)
+
      
     private lazy var tabStack: UIStackView = {
         $0.axis = .horizontal
@@ -57,8 +59,15 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
         return btn
     }
     
+    private func setResetButton(icon: String, action: UIAction?) -> UIButton {
+        let btn = UIButton(primaryAction: action)
+        btn.setImage(UIImage(named: icon), for: .normal)
+        btn.tintColor = .text
+        return btn
+    }
+    
     private func setOpacity(tag: Int){
-        [oneBtn, multiBtn, historyBtn, resetBtn].forEach { btn in
+        [oneBtn, multiBtn, historyBtn].forEach { btn in
             if btn.tag != tag {
                 btn.tintColor = .text
             }else {
@@ -100,9 +109,7 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
             oneVC.sellCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
             oneVC.spreadPercentProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
             oneVC.moneyProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
-        }
-        
-        if sender.tag == 1{
+        } else if sender.tag == 1{
             
             multiVC.bankTextField.text = ""
             multiVC.buyCurrencyPair.text = ""
@@ -126,4 +133,5 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
         }
         
     }
+    
 }

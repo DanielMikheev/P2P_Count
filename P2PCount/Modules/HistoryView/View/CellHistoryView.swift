@@ -76,7 +76,7 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
     lazy var hTableStack: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .horizontal
-        $0.spacing = 20
+        $0.spacing = 10
         $0.distribution = .fillEqually
         $0.alignment = .fill
         return $0
@@ -99,9 +99,13 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
     lazy var comissionTextLabel = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
     lazy var profitTextLabel = createTextLabel(font: UIFont(name: "K2D-Bold", size: 11), alignment: .left)
     
-    //second column stack
+    //buy column stack
     lazy var buyLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 1
+        $0.font = UIFont(name: "K2D-Light", size: 11)
+        $0.textAlignment = .center
+        $0.textColor = .accent
         return $0
     }(UILabel())
     
@@ -121,10 +125,38 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
     
     // swap column stack
     
+    lazy var swapLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 1
+        $0.font = UIFont(name: "K2D-Light", size: 11)
+        $0.textAlignment = .center
+        $0.textColor = .accent
+        return $0
+    }(UILabel())
     
-    //third column stack
+    lazy var vSwapColumnStack: UIStackView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.axis = .vertical
+        $0.spacing = 16
+        $0.distribution = .fillEqually
+        $0.alignment = .fill
+        return $0
+    }(UIStackView())
+    
+    lazy var swapNameExchange = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var swapNameCurrencyPair = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var swapPrice = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var swapCommision = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    
+    
+    
+    //sell column stack
     lazy var sellLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 1
+        $0.font = UIFont(name: "K2D-Light", size: 11)
+        $0.textAlignment = .center
+        $0.textColor = .accent
         return $0
     }(UILabel())
     
@@ -157,20 +189,31 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
         
         hTableStack.addArrangedSubview(vFirstColumnStack)
         hTableStack.addArrangedSubview(vSecondColumnStack)
+        hTableStack.addArrangedSubview(vSwapColumnStack)
         hTableStack.addArrangedSubview(vThirdColumnStack)
         
+        vFirstColumnStack.addArrangedSubview(UIView())
         vFirstColumnStack.addArrangedSubview(exchangeTextLabel)
         vFirstColumnStack.addArrangedSubview(currencyPairTextLabel)
         vFirstColumnStack.addArrangedSubview(priceTextLabel)
         vFirstColumnStack.addArrangedSubview(comissionTextLabel)
         vFirstColumnStack.addArrangedSubview(profitTextLabel)
         
+        vSecondColumnStack.addArrangedSubview(buyLabel)
         vSecondColumnStack.addArrangedSubview(buyNameExchange)
         vSecondColumnStack.addArrangedSubview(buyNameCurrencyPair)
         vSecondColumnStack.addArrangedSubview(buyPrice)
         vSecondColumnStack.addArrangedSubview(buyCommision)
         vSecondColumnStack.addArrangedSubview(UIView())
         
+        vSwapColumnStack.addArrangedSubview(swapLabel)
+        vSwapColumnStack.addArrangedSubview(swapNameExchange)
+        vSwapColumnStack.addArrangedSubview(swapNameCurrencyPair)
+        vSwapColumnStack.addArrangedSubview(swapPrice)
+        vSwapColumnStack.addArrangedSubview(swapCommision)
+        vSwapColumnStack.addArrangedSubview(UIView())
+        
+        vThirdColumnStack.addArrangedSubview(sellLabel)
         vThirdColumnStack.addArrangedSubview(sellNameExchange)
         vThirdColumnStack.addArrangedSubview(sellNameCurrencyPair)
         vThirdColumnStack.addArrangedSubview(sellPrice)
@@ -180,24 +223,30 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
         
         setupConstraints()
         
+        
     }
-    
-
        
     
     
     func setData(data: HistoryItem){
         self.exchangeTextLabel.text = "Exchange"
-        self.currencyPairTextLabel.text = "Currency Pair"
+        self.currencyPairTextLabel.text = "Pair"
         self.priceTextLabel.text = "Price"
         self.comissionTextLabel.text = "Comission"
-        self.profitTextLabel.text = "Profit/Spread"
+        self.profitTextLabel.text = "Profit"
         self.date.text = data.date
         self.buyLabel.text = data.buy
+        self.buyNameExchange.text = data.buyNameExchange
         self.buyNameCurrencyPair.text = data.buyCurrencyPair
         self.buyPrice.text = data.buyPrice
         self.buyCommision.text = data.buyCommision
+        self.swapLabel.text = data.swap
+        self.swapNameExchange.text = data.swapNameExchange
+        self.swapNameCurrencyPair.text = data.swapCurrencyPair
+        self.swapPrice.text = data.swapPrice
+        self.swapCommision.text = data.swapCommision
         self.sellLabel.text = data.sell
+        self.sellNameExchange.text = data.sellNameExchange
         self.sellNameCurrencyPair.text = data.sellCurrencyPair
         self.sellPrice.text = data.sellPrice
         self.sellCommision.text = data.sellCommision
@@ -220,7 +269,7 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         textLabel.font = font
         textLabel.textAlignment = alignment
-        textLabel.numberOfLines = 1
+        textLabel.numberOfLines = 2
         textLabel.textColor = .text
         return textLabel
     }
@@ -237,7 +286,7 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
             hHeadStack.trailingAnchor.constraint(equalTo: historyView.trailingAnchor, constant: -19),
             hHeadStack.heightAnchor.constraint(equalToConstant: 22),
             
-            hTableStack.topAnchor.constraint(equalTo: hHeadStack.bottomAnchor, constant: 80),
+            hTableStack.topAnchor.constraint(equalTo: hHeadStack.bottomAnchor, constant: 50),
             hTableStack.leadingAnchor.constraint(equalTo: historyView.leadingAnchor, constant: 19),
             hTableStack.trailingAnchor.constraint(equalTo: historyView.trailingAnchor, constant: -19),
             hTableStack.bottomAnchor.constraint(equalTo: historyView.bottomAnchor, constant: -19),
