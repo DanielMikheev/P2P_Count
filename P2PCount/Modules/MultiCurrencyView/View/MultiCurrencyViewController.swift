@@ -8,7 +8,18 @@
 import UIKit
 
 protocol MultiCurrencyViewControllerProtocol: AnyObject {
-    
+    var bankTextField: UITextField { get set }
+    var buyCurrencyPair: UITextField { get set }
+    var buyPrice: UITextField { get set }
+    var buyCommision: UITextField { get set }
+    var swapCurrencyPair: UITextField { get set }
+    var swapPrice: UITextField { get set }
+    var swapCommision: UITextField { get set }
+    var sellCurrencyPair: UITextField { get set }
+    var sellPrice: UITextField { get set }
+    var sellCommision: UITextField { get set }
+    var spreadPercentProfit: UITextField { get set }
+    var moneyProfit: UITextField { get set }
 }
 class MultiCurrencyViewController: UIViewController, MultiCurrencyViewControllerProtocol {
     

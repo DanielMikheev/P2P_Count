@@ -16,7 +16,7 @@ extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let data = self.presenter.allItems[indexPath.item]
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OneCellHistoryView.reuseIdentifier, for: indexPath) as! OneCellHistoryView
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellHistoryView.reuseIdentifier, for: indexPath) as! CellHistoryView
             cell.setData(data: data)
             return cell
        

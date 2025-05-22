@@ -21,6 +21,22 @@ class MultiCurrencyPresenter: MultiCurrencyPresenterProtocol{
     }
     
     func addHistoryCircles(){
-        NotificationCenter.default.post(name: .addCircle, object: nil, userInfo: [String.add : AddCircles.multi ])
+        let userInfo: [String: Any] = [
+            String.add: AddCircles.multi,
+            "buyPair": self.view?.buyCurrencyPair.text ?? "",
+            "swapPair": self.view?.swapPrice.text ?? "",
+            "sellPair": self.view?.sellCurrencyPair.text ?? "",
+            "buyPrice": self.view?.buyPrice.text ?? "",
+            "swapPrice": self.view?.swapPrice.text ?? "",
+            "sellPrice": self.view?.sellPrice.text ?? "",
+            "buyComission": self.view?.buyCommision.text ?? "",
+            "swapComission": self.view?.swapCommision.text ?? "",
+            "sellComission": self.view?.sellCommision.text ?? "",
+            "spreadPercentProfit": self.view?.spreadPercentProfit.text ?? "",
+            "moneyProfit": self.view?.moneyProfit.text ?? ""
+        ]
+        
+        NotificationCenter.default.post(name: .addCircle, object: nil, userInfo: userInfo)
+        
     }
 }

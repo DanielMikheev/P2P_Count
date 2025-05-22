@@ -23,7 +23,21 @@ final class OneCurrencyPresenter: OneCurrencyPresenterProtocol {
     }
     
     func addHistoryCircles(){
-        NotificationCenter.default.post(name: .addCircle, object: nil, userInfo: [String.add : AddCircles.one])
+        
+        let userInfo: [String: Any] = [
+            String.add: AddCircles.one,
+            "buyPair": self.view?.buyCurrencyPair.text ?? "",
+            "sellPair": self.view?.sellCurrencyPair.text ?? "",
+            "buyPrice": self.view?.buyPrice.text ?? "",
+            "sellPrice": self.view?.sellPrice.text ?? "",
+            "buyComission": self.view?.buyCommision.text ?? "",
+            "sellComission": self.view?.sellCommision.text ?? "",
+            "spreadPercentProfit": self.view?.spreadPercentProfit.text ?? "",
+            "moneyProfit": self.view?.moneyProfit.text ?? ""
+        ]
+        
+        NotificationCenter.default.post(name: .addCircle, object: nil, userInfo: userInfo)
+
     }
     
     

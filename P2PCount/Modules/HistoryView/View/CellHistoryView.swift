@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol OneCellHistoryViewProtocol: AnyObject {
+protocol CellHistoryViewProtocol: AnyObject {
     func setData(data: HistoryItem)
 }
 
-class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
+class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
     static let reuseIdentifier: String = "OneCellHistoryView"
     
     lazy var historyView: UIView = {
@@ -34,7 +34,7 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
     lazy var hHeadStack: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .horizontal
-        $0.spacing = 65
+        $0.spacing = 55
         $0.distribution = .equalSpacing
         $0.alignment = .fill
         return $0
@@ -93,14 +93,15 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
         return $0
     }(UIStackView())
     
-    lazy var exchangetTextLabel = createTextLabel(text: "Exchange", font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
-    lazy var currencyPairTextLabel = createTextLabel(text: "Currency Pair", font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
-    lazy var priceTextLabel = createTextLabel(text: "Price", font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
-    lazy var comissiontTextLabel = createTextLabel(text: "Commision", font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
-    lazy var profitTextLabel = createTextLabel(text: "Profit/Spread", font: UIFont(name: "K2D-Bold", size: 11), alignment: .left)
+    lazy var exchangeTextLabel = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
+    lazy var currencyPairTextLabel = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
+    lazy var priceTextLabel = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
+    lazy var comissionTextLabel = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .left)
+    lazy var profitTextLabel = createTextLabel(font: UIFont(name: "K2D-Bold", size: 11), alignment: .left)
     
     //second column stack
     lazy var buyLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
     
@@ -113,13 +114,17 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
         return $0
     }(UIStackView())
     
-    lazy var buyNameExchange = createTextLabel(text: "Bybit", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var buyNameCurrencyPair = createTextLabel(text: "RUB/USDT", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var buyPrice = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var buyCommision = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var buyNameExchange = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var buyNameCurrencyPair = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var buyPrice = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var buyCommision = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    
+    // swap column stack
+    
     
     //third column stack
     lazy var sellLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
     
@@ -132,14 +137,14 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
         return $0
     }(UIStackView())
     
-    lazy var sellNameExchange = createTextLabel(text: "OKX", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var sellNameCurrencyPair = createTextLabel(text: "USDT/RUB", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var sellPrice = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
-    lazy var sellCommision = createTextLabel(text: "", font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var sellNameExchange = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var sellNameCurrencyPair = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var sellPrice = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
+    lazy var sellCommision = createTextLabel(font: UIFont(name: "K2D-Light", size: 11), alignment: .center)
     
     //profit value labels
     
-    lazy var moneyAndSpreadProfitLabel = createTextLabel(text: "3280 $ / 2.35 %", font: UIFont(name: "K2D-Bold", size: 11), alignment: .center)
+    lazy var moneyAndSpreadProfitLabel = createTextLabel(font: UIFont(name: "K2D-Bold", size: 11), alignment: .center)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -154,10 +159,10 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
         hTableStack.addArrangedSubview(vSecondColumnStack)
         hTableStack.addArrangedSubview(vThirdColumnStack)
         
-        vFirstColumnStack.addArrangedSubview(exchangetTextLabel)
+        vFirstColumnStack.addArrangedSubview(exchangeTextLabel)
         vFirstColumnStack.addArrangedSubview(currencyPairTextLabel)
         vFirstColumnStack.addArrangedSubview(priceTextLabel)
-        vFirstColumnStack.addArrangedSubview(comissiontTextLabel)
+        vFirstColumnStack.addArrangedSubview(comissionTextLabel)
         vFirstColumnStack.addArrangedSubview(profitTextLabel)
         
         vSecondColumnStack.addArrangedSubview(buyNameExchange)
@@ -182,10 +187,21 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
     
     
     func setData(data: HistoryItem){
+        self.exchangeTextLabel.text = "Exchange"
+        self.currencyPairTextLabel.text = "Currency Pair"
+        self.priceTextLabel.text = "Price"
+        self.comissionTextLabel.text = "Comission"
+        self.profitTextLabel.text = "Profit/Spread"
+        self.date.text = data.date
+        self.buyLabel.text = data.buy
+        self.buyNameCurrencyPair.text = data.buyCurrencyPair
         self.buyPrice.text = data.buyPrice
         self.buyCommision.text = data.buyCommision
-        self.sellPrice.text = data.sell
+        self.sellLabel.text = data.sell
+        self.sellNameCurrencyPair.text = data.sellCurrencyPair
+        self.sellPrice.text = data.sellPrice
         self.sellCommision.text = data.sellCommision
+        self.moneyAndSpreadProfitLabel.text = data.profitAndSpreadResult
     }
 
     
@@ -199,10 +215,9 @@ class OneCellHistoryView: UICollectionViewCell, OneCellHistoryViewProtocol{
         return dateString
     }
     
-    func createTextLabel(text: String?, font: UIFont?, alignment: NSTextAlignment) -> UILabel{
+    func createTextLabel(font: UIFont?, alignment: NSTextAlignment) -> UILabel{
         let textLabel = UILabel()
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.text = text
         textLabel.font = font
         textLabel.textAlignment = alignment
         textLabel.numberOfLines = 1

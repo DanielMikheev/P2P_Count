@@ -18,7 +18,6 @@ protocol OneCurrencyViewControllerProtocol: AnyObject {
     var spreadPercentProfit: UITextField { get set }
     var moneyProfit: UITextField { get set }
     func createTextFields(placeholder: String?, isEnabled: Bool, autocapitalize: UITextAutocapitalizationType) -> UITextField
-    
 }
 
 final class OneCurrencyViewController: UIViewController, OneCurrencyViewControllerProtocol {

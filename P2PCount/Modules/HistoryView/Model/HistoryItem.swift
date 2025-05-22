@@ -14,14 +14,17 @@ struct HistoryItem {
     var swap: String?
     var sell: String?
     var exchange: String?
+    var pair: String?
+    var price: String?
+    var comission: String?
+    var profitAndSpreadText: String?
     var buyNameExchange: String?
     var swapNameExchange: String?
     var sellNameExchange: String?
     var currencyPair: String?
     var buyCurrencyPair: String?
     var swapCurrencyPair: String?
-    var sellCurrencyaPair: String?
-    var price: String?
+    var sellCurrencyPair: String?
     var buyPrice: String?
     var swapPrice: String?
     var sellPrice: String?
@@ -29,7 +32,6 @@ struct HistoryItem {
     var buyCommision: String?
     var swapCommision: String?
     var sellCommision : String?
-    var profitAndSpreadText: String?
     var profitAndSpreadResult: String?
     
 }

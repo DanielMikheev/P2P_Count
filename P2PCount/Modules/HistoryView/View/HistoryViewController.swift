@@ -47,7 +47,8 @@ class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
         $0.clipsToBounds = true
-        $0.register(OneCellHistoryView.self, forCellWithReuseIdentifier: OneCellHistoryView.reuseIdentifier)
+        $0.backgroundColor = .main
+        $0.register(CellHistoryView.self, forCellWithReuseIdentifier: CellHistoryView.reuseIdentifier)
         return $0
     }(UICollectionView(frame: .zero, collectionViewLayout: setLayout()))
     
