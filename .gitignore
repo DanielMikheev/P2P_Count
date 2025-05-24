@@ -56,7 +56,7 @@ fastlane/test_output
 .env.local
 
 #Ignore GoogleService-Info.plist
-GoodleService-Info.plist
+GoogleService-Info.plist
 
 # Logs
 *.log
