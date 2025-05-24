@@ -54,7 +54,9 @@ fastlane/test_output
 # Local development files
 .env
 .env.local
-.plist
+
+#Ignore GoogleService-Info.plist
+GoodleService-Info.plist
 
 # Logs
 *.log
