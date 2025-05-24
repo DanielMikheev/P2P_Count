@@ -81,57 +81,62 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
         guard let sender = sender.sender as? UIButton else { return }
         self.selectedIndex = sender.tag
         self.setOpacity(tag: sender.tag)
-        
     }
     
-    lazy var resetAction: UIAction = UIAction{ [weak self] sender in
+    lazy var resetAction: UIAction = UIAction { [weak self ]_ in
         guard let self = self else { return }
-        guard let sender = sender.sender as? UIButton else { return }
-        self.selectedIndex = sender.tag
-        
-        if sender.tag == 0{
-            oneVC.bankTextField.text = ""
-            oneVC.buyCurrencyPair.text = ""
-            oneVC.buyPrice.text = ""
-            oneVC.buyCommision.text = ""
-            oneVC.sellCurrencyPair.text = ""
-            oneVC.sellPrice.text = ""
-            oneVC.sellCommision.text = ""
-            oneVC.spreadPercentProfit.text = ""
-            oneVC.moneyProfit.text = ""
-            
-            oneVC.bankTextField.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.buyCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.buyPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.buyCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.sellCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.sellPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.sellCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.spreadPercentProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            oneVC.moneyProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
-        } else if sender.tag == 1{
-            
-            multiVC.bankTextField.text = ""
-            multiVC.buyCurrencyPair.text = ""
-            multiVC.buyPrice.text = ""
-            multiVC.buyCommision.text = ""
-            multiVC.sellCurrencyPair.text = ""
-            multiVC.sellPrice.text = ""
-            multiVC.sellCommision.text = ""
-            multiVC.spreadPercentProfit.text = ""
-            multiVC.moneyProfit.text = ""
-            
-            multiVC.bankTextField.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.buyCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.buyPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.buyCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.sellCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.sellPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.sellCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.spreadPercentProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
-            multiVC.moneyProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
-        }
-        
+        self.resetAll()
     }
     
-}
+    private func resetAll(){
+        guard selectedIndex == 0 || selectedIndex == 1 else { return }
+        
+        if selectedIndex == 0{
+                self.oneVC.bankTextField.text = ""
+                self.oneVC.buyCurrencyPair.text = ""
+                self.oneVC.buyPrice.text = ""
+                self.oneVC.buyCommision.text = ""
+                self.oneVC.sellCurrencyPair.text = ""
+                self.oneVC.sellPrice.text = ""
+                self.oneVC.sellCommision.text = ""
+                self.oneVC.spreadPercentProfit.text = ""
+                self.oneVC.moneyProfit.text = ""
+                self.oneVC.bankTextField.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.buyCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.buyPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.buyCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.sellCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.sellPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.sellCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.spreadPercentProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.oneVC.moneyProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
+            
+            }else if selectedIndex == 1{
+                self.multiVC.bankTextField.text = ""
+                self.multiVC.buyCurrencyPair.text = ""
+                self.multiVC.buyPrice.text = ""
+                self.multiVC.buyCommision.text = ""
+                self.multiVC.swapCurrencyPair.text = ""
+                self.multiVC.swapPrice.text = ""
+                self.multiVC.swapCommision.text = ""
+                self.multiVC.sellCurrencyPair.text = ""
+                self.multiVC.sellPrice.text = ""
+                self.multiVC.sellCommision.text = ""
+                self.multiVC.spreadPercentProfit.text = ""
+                self.multiVC.moneyProfit.text = ""
+                self.multiVC.bankTextField.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.buyCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.buyPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.buyCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.swapCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.swapPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.swapCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.sellCurrencyPair.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.sellPrice.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.sellCommision.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.spreadPercentProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                self.multiVC.moneyProfit.font = UIFont(name: "K2D-ExtraLight", size: 14)
+                
+            }
+        }
+    }

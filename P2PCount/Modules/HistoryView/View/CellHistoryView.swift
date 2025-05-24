@@ -13,6 +13,7 @@ protocol CellHistoryViewProtocol: AnyObject {
 
 class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
     static let reuseIdentifier: String = "OneCellHistoryView"
+    var deleteButtonAction: ((UICollectionViewCell) -> Void)?
     
     lazy var historyView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -67,8 +68,9 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
         return $0
     }(UIButton(primaryAction: deleteAction))
       
-    lazy var deleteAction: UIAction = UIAction { _ in
-        
+    lazy var deleteAction: UIAction = UIAction { [weak self] _ in
+        guard let self = self else { return }
+        self.deleteButtonAction?(self)
     }
     
     //table stack

@@ -9,7 +9,6 @@ import UIKit
 
 protocol HistoryViewControllerProtocol: AnyObject {
     var historyCollectionView: UICollectionView { get set }
-
 }
 
 class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
@@ -76,7 +75,6 @@ class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
             section.interGroupSpacing = 100
             return section
         }
-        
         
         override func viewDidLoad() {
             super.viewDidLoad()

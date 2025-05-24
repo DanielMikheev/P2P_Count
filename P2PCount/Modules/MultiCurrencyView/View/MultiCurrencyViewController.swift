@@ -208,7 +208,7 @@ class MultiCurrencyViewController: UIViewController, MultiCurrencyViewController
     }(UIButton(primaryAction: countProfitButton))
     
     lazy var countProfitButton: UIAction = UIAction { _ in
-//        self.presenter.countSpreadAndProfit()
+        self.presenter.countSpreadAndProfit()
     }
     
     

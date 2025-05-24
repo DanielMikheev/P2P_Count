@@ -13,23 +13,45 @@ protocol HistoryViewPresenterProtocol: AnyObject {
     func addCirclesHistory(nt: Notification)
     var context: AddCircles? { get set }
     var allItems: [HistoryItem] { get set }
-
+    func deleteItem(_ cell: UICollectionViewCell)
 }
 
 class HistoryViewPresenter: HistoryViewPresenterProtocol{
     
     //views
     weak var view: HistoryViewControllerProtocol?
-
+    
     
     //data and context
     var allItems: [HistoryItem] = []
     var context: AddCircles?
- 
+    
     init(view: HistoryViewControllerProtocol?, context: AddCircles? = nil) {
         self.view = view
         self.context = context
         createHistoryItems()
+    }
+    
+    func deleteItem(_ cell: UICollectionViewCell) {
+        //        guard !self.allItems.isEmpty, index >= 0, index < self.allItems.count else { return }
+        guard let indexPath = self.view?.historyCollectionView.indexPath(for: cell) else { return }
+        self.allItems.remove(at: indexPath.item)
+        
+        if self.allItems.isEmpty {
+            let label = UILabel()
+            label.text = "No data"
+            label.font = UIFont(name: "K2D-Bold", size: 20)
+            label.textAlignment = .center
+            label.textColor = .content
+            self.view?.historyCollectionView.backgroundView = label
+            self.view?.historyCollectionView.reloadData()
+        } else {
+            self.view?.historyCollectionView.performBatchUpdates({
+                self.view?.historyCollectionView.deleteItems(at: [indexPath])
+            }, completion: {_ in 
+                self.view?.historyCollectionView.collectionViewLayout.invalidateLayout()
+            })
+        }
     }
     
     private func setupCurrentDate() -> String {
@@ -47,12 +69,12 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
     
     @objc func addCirclesHistory(nt: Notification){
         guard let userInfo = nt.userInfo else { return }
+        self.view?.historyCollectionView.backgroundView = nil
         if let info = userInfo[String.add] as? AddCircles{
             switch info{
             case .one:
                 let oneDate = setupCurrentDate()
                 
-                // Получаем данные из userInfo
                 guard let buyPair = userInfo["buyPair"] as? String,
                       let sellPair = userInfo["sellPair"] as? String,
                       let buyPrice = userInfo["buyPrice"] as? String,
@@ -83,7 +105,6 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
             case .multi:
                 let multiDate = setupCurrentDate()
                 
-                // Получаем данные из userInfo
                 guard let buyPair = userInfo["buyPair"] as? String,
                       let swapPair = userInfo["swapPair"] as? String,
                       let sellPair = userInfo["sellPair"] as? String,

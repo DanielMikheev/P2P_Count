@@ -10,7 +10,6 @@ import Foundation
 
 protocol OneCurrencyPresenterProtocol: AnyObject {
     func countSpreadAndProfit()
-    func resetAllFields()
     func addHistoryCircles()
 }
 
@@ -65,15 +64,5 @@ final class OneCurrencyPresenter: OneCurrencyPresenterProtocol {
             print("Заполните все поля!")
         }
         
-    }
-    
-    func resetAllFields(){
-        self.view?.bankTextField.text? = ""
-        self.view?.sellCurrencyPair.text? = ""
-        self.view?.buyCurrencyPair.text? = ""
-        self.view?.sellPrice.text? = ""
-        self.view?.buyPrice.text? = ""
-        self.view?.sellCommision.text? = ""
-        self.view?.buyCommision.text? = ""
     }
 }

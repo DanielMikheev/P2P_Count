@@ -10,7 +10,7 @@ import Foundation
 
 protocol MultiCurrencyPresenterProtocol: AnyObject {
     func addHistoryCircles()
-    func resetAllFields()
+    func countSpreadAndProfit()
 }
 
 class MultiCurrencyPresenter: MultiCurrencyPresenterProtocol{
@@ -25,7 +25,7 @@ class MultiCurrencyPresenter: MultiCurrencyPresenterProtocol{
         let userInfo: [String: Any] = [
             String.add: AddCircles.multi,
             "buyPair": self.view?.buyCurrencyPair.text ?? "",
-            "swapPair": self.view?.swapPrice.text ?? "",
+            "swapPair": self.view?.swapCurrencyPair.text ?? "",
             "sellPair": self.view?.sellCurrencyPair.text ?? "",
             "buyPrice": self.view?.buyPrice.text ?? "",
             "swapPrice": self.view?.swapPrice.text ?? "",
@@ -50,35 +50,27 @@ class MultiCurrencyPresenter: MultiCurrencyPresenterProtocol{
               let swapComission = self.view?.swapCommision.text, !swapComission.isEmpty,
               let buyCommision = self.view?.buyCommision.text, !buyCommision.isEmpty else { return }
         
-        if let sell = Float(sellPriceText), let buy = Float(buyPriceText), let sellCom = Float(sellCommision), let buyCom = Float(buyCommision), let money = Float(bank){
+        if let sell = Float(sellPriceText), let swap = Float(swapPriceText), let buy = Float(buyPriceText), let sellCom = Float(sellCommision), let swapCom = Float(swapComission), let buyCom = Float(buyCommision), let money = Float(bank){
             
-            let spreadPercent: Float = ((sell * (1 - sellCom))/(buy * (1 - buyCom)) - 1)
-            let spreadPercentNew = String(format: "%.2f", (spreadPercent * 100))
-            let moneyProfit: Int = Int(money * (spreadPercent))
+            let buyWithComission: Float = money / buy * (1 - buyCom / 100)
+            let swapWithComission: Float = buyWithComission / swap * (1 - swapCom / 100)
+            let sellWithComission: Float = swapWithComission * sell * (1 - sellCom / 100)
             
-            self.view?.spreadPercentProfit.font = UIFont(name: "K2D-Bold", size: 18)
+            let moneyResult: Float = sellWithComission - money
+            let spreadResult: Float = moneyResult / money
+            
+            let spreadResultStr = String(NSString(format: "%.2f", (spreadResult * 100)))
+            let moneyResultStr = Int(moneyResult)
+            
+            self.view?.spreadPercentProfit.font =  UIFont(name: "K2D-Bold", size: 18)
             self.view?.moneyProfit.font = UIFont(name: "K2D-Bold", size: 18)
-            self.view?.spreadPercentProfit.text = "\(spreadPercentNew)"
-            self.view?.moneyProfit.text = "\(moneyProfit)"
+            self.view?.spreadPercentProfit.text = "\(spreadResultStr)"
+            self.view?.moneyProfit.text = "\(moneyResultStr)"
 
             
         }else{
             print("Заполните все поля!")
         }
         
-    }
-
-    
-    func resetAllFields(){
-        self.view?.bankTextField.text? = ""
-        self.view?.sellCurrencyPair.text? = ""
-        self.view?.swapCurrencyPair.text? = ""
-        self.view?.buyCurrencyPair.text? = ""
-        self.view?.sellPrice.text? = ""
-        self.view?.swapPrice.text? = ""
-        self.view?.buyPrice.text? = ""
-        self.view?.sellCommision.text? = ""
-        self.view?.swapCommision.text? = ""
-        self.view?.buyCommision.text? = ""
     }
 }

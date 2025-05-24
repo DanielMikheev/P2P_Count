@@ -28,12 +28,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-//        let rootView = AuthLayer.shared.checkAuth() ? Builder.createOneCurrencyView() : Builder.createRegistView()
-//        let rootView = Builder.createOneCurrencyView()
-        self.window?.rootViewController = Builder.createMainTabBarView()
+        let rootView = /*AuthLayer.shared.checkAuth() ? Builder.createMainTabBarView() : */Builder.createRegistView()
+        self.window?.rootViewController = rootView
         self.window?.makeKeyAndVisible()
-//        
-//        NotificationCenter.default.addObserver(self, selector: #selector(windowsManager(notificaion: )), name: .routing , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(windowsManager(notificaion: )), name: .routing , object: nil)
     }
 
 
@@ -50,8 +49,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let authVC = Builder.createAuthorizeView() as? AuthorizationViewController
                 self.window?.rootViewController = authVC
             case .oneCurrency:
-                let oneCurrencyVC = Builder.createOneCurrencyView() as? OneCurrencyViewController
-                self.window?.rootViewController = oneCurrencyVC
+                let main = Builder.createMainTabBarView() as? MainTabBarController
+                self.window?.rootViewController = main
             }
         }
     }
