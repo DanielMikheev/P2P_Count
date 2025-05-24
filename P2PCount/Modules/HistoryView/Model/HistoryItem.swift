@@ -8,7 +8,8 @@
 import Foundation
 
 
-struct HistoryItem {
+struct HistoryItem: Identifiable {
+    var id: UUID?
     var date: String?
     var buy: String?
     var swap: String?
@@ -17,6 +18,7 @@ struct HistoryItem {
     var pair: String?
     var price: String?
     var comission: String?
+    var commision: String?
     var profitAndSpreadText: String?
     var buyNameExchange: String?
     var swapNameExchange: String?
@@ -28,7 +30,6 @@ struct HistoryItem {
     var buyPrice: String?
     var swapPrice: String?
     var sellPrice: String?
-    var commision: String?
     var buyCommision: String?
     var swapCommision: String?
     var sellCommision : String?

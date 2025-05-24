@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24A335" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Histories" representedClassName="Histories" syncable="YES">
+        <attribute name="buy" optional="YES" attributeType="String"/>
+        <attribute name="buyCommision" optional="YES" attributeType="String"/>
+        <attribute name="buyCurrencyPair" optional="YES" attributeType="String"/>
+        <attribute name="buyNameExchange" optional="YES" attributeType="String"/>
+        <attribute name="buyPrice" optional="YES" attributeType="String"/>
+        <attribute name="comission" optional="YES" attributeType="String"/>
+        <attribute name="commision" optional="YES" attributeType="String"/>
+        <attribute name="currencyPair" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="exchange" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="pair" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="profitAndSpreadResult" optional="YES" attributeType="String"/>
+        <attribute name="profitAndSpreadText" optional="YES" attributeType="String"/>
+        <attribute name="sell" optional="YES" attributeType="String"/>
+        <attribute name="sellCommision" optional="YES" attributeType="String"/>
+        <attribute name="sellCurrencyPair" optional="YES" attributeType="String"/>
+        <attribute name="sellNameExchange" optional="YES" attributeType="String"/>
+        <attribute name="sellPrice" optional="YES" attributeType="String"/>
+        <attribute name="swap" optional="YES" attributeType="String"/>
+        <attribute name="swapCommision" optional="YES" attributeType="String"/>
+        <attribute name="swapCurrencyPair" optional="YES" attributeType="String"/>
+        <attribute name="swapNameExchange" optional="YES" attributeType="String"/>
+        <attribute name="swapPrice" optional="YES" attributeType="String"/>
+    </entity>
+</model>

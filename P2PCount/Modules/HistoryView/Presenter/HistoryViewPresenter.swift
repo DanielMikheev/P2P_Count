@@ -99,6 +99,7 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
                 
                 let oneNewIndexPath = IndexPath(item: allItems.count, section: 0)
                 allItems.append(oneNewData)
+                
                 self.view?.historyCollectionView.insertItems(at: [oneNewIndexPath])
                 self.view?.historyCollectionView.scrollToItem(at: oneNewIndexPath, at: .centeredVertically, animated: true)
                 self.context = .one

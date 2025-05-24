@@ -18,7 +18,8 @@ extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDel
             let data = self.presenter.allItems[indexPath.item]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellHistoryView.reuseIdentifier, for: indexPath) as! CellHistoryView
             cell.setData(data: data)
-        
+            StorageManager.shared.createHistory(historyData: data)
+            
             cell.deleteButtonAction = { [weak self] cell in
             guard let self = self else { return }
             self.presenter.deleteItem(cell)
