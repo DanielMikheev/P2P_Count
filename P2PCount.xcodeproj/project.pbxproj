@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		68D690462DC7A2DE003C6433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68D690452DC7A2DE003C6433 /* GoogleService-Info.plist */; };
 		68D6904A2DC7A398003C6433 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 68D690492DC7A398003C6433 /* FirebaseAuth */; };
 		68D6904C2DC7A39E003C6433 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 68D6904B2DC7A39E003C6433 /* FirebaseCore */; };
 		68D6904E2DC7A3A2003C6433 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 68D6904D2DC7A3A2003C6433 /* FirebaseDatabase */; };
@@ -17,7 +16,6 @@
 
 /* Begin PBXFileReference section */
 		682BD9A42DC0CCEA00C70987 /* P2PCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P2PCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		68D690452DC7A2DE003C6433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -62,7 +60,6 @@
 			children = (
 				682BD9A62DC0CCEA00C70987 /* P2PCount */,
 				682BD9A52DC0CCEA00C70987 /* Products */,
-				68D690452DC7A2DE003C6433 /* GoogleService-Info.plist */,
 				68D690482DC7A398003C6433 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -154,7 +151,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68D690462DC7A2DE003C6433 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

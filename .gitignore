@@ -54,6 +54,7 @@ fastlane/test_output
 # Local development files
 .env
 .env.local
+.plist
 
 # Logs
 *.log
