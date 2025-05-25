@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol HistoryViewControllerProtocol: AnyObject {
     var historyCollectionView: UICollectionView { get set }
@@ -83,6 +84,7 @@ class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
             setupConstraints()
             
         }
+    
         
         func setupConstraints(){
             NSLayoutConstraint.activate([

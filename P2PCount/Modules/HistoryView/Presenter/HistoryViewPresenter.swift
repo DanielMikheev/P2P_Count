@@ -95,8 +95,7 @@ class HistoryViewPresenter: HistoryViewPresenterProtocol{
                                             sellPrice: "\(sellPrice)",
                                             buyCommision: "\(buyComission)",
                                             sellCommision: "\(sellComission)",
-                                            profitAndSpreadResult: "\(moneyProfit) $ / \(spreadPercentProfit) %")
-                
+                                             profitAndSpreadResult: "\(moneyProfit) $ / \(spreadPercentProfit) %")
                 let oneNewIndexPath = IndexPath(item: allItems.count, section: 0)
                 allItems.append(oneNewData)
                 

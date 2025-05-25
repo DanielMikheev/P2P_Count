@@ -67,12 +67,17 @@ class StorageManager{
         saveContext()
     }
     
-    func getAllHistories(){
+    func getAllHistories() -> [Histories]{
         let request = Histories.fetchRequest()
         do{
-            let history = try persistantContainer.viewContext.fetch(request)
+            let histories = try persistantContainer.viewContext.fetch(request)
+            return histories
         }catch{
             print(error.localizedDescription)
         }
+        return []
     }
+
+    
+    
 }
