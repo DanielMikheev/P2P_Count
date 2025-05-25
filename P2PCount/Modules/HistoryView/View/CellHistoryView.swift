@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CellHistoryViewProtocol: AnyObject {
-    func setData(data: HistoryItem)
+    func setData(data: Histories)
 }
 
 class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
@@ -230,7 +230,7 @@ class CellHistoryView: UICollectionViewCell, CellHistoryViewProtocol{
        
     
     
-    func setData(data: HistoryItem){
+    func setData(data: Histories){
         self.exchangeTextLabel.text = "Exchange"
         self.currencyPairTextLabel.text = "Pair"
         self.priceTextLabel.text = "Price"

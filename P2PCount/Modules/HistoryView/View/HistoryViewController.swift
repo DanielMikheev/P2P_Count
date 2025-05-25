@@ -81,8 +81,10 @@ class HistoryViewController: UIViewController, HistoryViewControllerProtocol{
             super.viewDidLoad()
             view.backgroundColor = .main
             view.addSubviews(highFigure, menuButton, titleLabel, historyCollectionView)
+            self.presenter.dataManager.getAllHistories()
+            self.presenter.allItems = self.presenter.dataManager.historiesData
             setupConstraints()
-            
+        
         }
     
         

@@ -25,7 +25,6 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
     private lazy var multiBtn: UIButton = setButton(icon: "ic-multi", tag: 1, action: action)
     private lazy var historyBtn: UIButton = setButton(icon: "ic-history", tag: 2, action: action)
     private lazy var resetBtn: UIButton = setResetButton(icon: "ic-reset", action: resetAction)
-
      
     private lazy var tabStack: UIStackView = {
         $0.axis = .horizontal
@@ -81,6 +80,7 @@ class MainTabBarController: UITabBarController, MainTabBarControllerProtocol {
         guard let sender = sender.sender as? UIButton else { return }
         self.selectedIndex = sender.tag
         self.setOpacity(tag: sender.tag)
+        
     }
     
     lazy var resetAction: UIAction = UIAction { [weak self ]_ in

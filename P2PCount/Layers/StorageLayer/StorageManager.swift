@@ -34,6 +34,8 @@ class StorageManager{
         }
     }
     
+    var historiesData: [Histories] = []
+    
     //crud
     
     func createHistory(historyData: HistoryItem){
@@ -65,17 +67,25 @@ class StorageManager{
         history.profitAndSpreadResult = historyData.profitAndSpreadResult
         
         saveContext()
+        getAllHistories()
     }
     
-    func getAllHistories() -> [Histories]{
-        let request = Histories.fetchRequest()
-        do{
-            let histories = try persistantContainer.viewContext.fetch(request)
-            return histories
-        }catch{
-            print(error.localizedDescription)
+    func getAllHistories(){
+        let request: NSFetchRequest<Histories> = Histories.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        
+        do {
+            historiesData = try persistantContainer.viewContext.fetch(request)
+        } catch {
+            print("Error fetching histories: \(error)")
+            historiesData = []
         }
-        return []
+        
+    }
+    
+    func deleteHistory(history: Histories){
+        persistantContainer.viewContext.delete(history)
+        saveContext()
     }
 
     

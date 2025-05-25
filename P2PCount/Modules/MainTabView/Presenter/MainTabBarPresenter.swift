@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainTabBarPresenterProtocol: AnyObject {
-    
+
 }
 
 class MainTabBarPresenter: MainTabBarPresenterProtocol{
@@ -19,4 +19,6 @@ class MainTabBarPresenter: MainTabBarPresenterProtocol{
         self.view = view
         
     }
+    
+
 }

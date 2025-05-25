@@ -22,6 +22,8 @@ extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDel
             cell.deleteButtonAction = { [weak self] cell in
             guard let self = self else { return }
             self.presenter.deleteItem(cell)
+            self.presenter.dataManager.deleteHistory(history: data)
+            self.presenter.dataManager.saveContext()
         }
             return cell
        
