@@ -1,9 +1,9 @@
 
-# P2P Crypto Trade Calculator
+# P2P Count
 
 ## 📱 Overview
 
-P2P Crypto Trade Calculator is an iOS application designed to help traders efficiently calculate and analyze cryptocurrency transactions on peer-to-peer markets. The app provides real-time profit/loss estimations, spread calculations, and trade history tracking to maximize your trading efficiency.
+P2P Count is an iOS application designed to help traders efficiently calculate and analyze cryptocurrency transactions on peer-to-peer markets. The app provides real-time profit/loss estimations, spread calculations, and trade history tracking to maximize your trading efficiency.
 
 ## ✨ Key Features
 
