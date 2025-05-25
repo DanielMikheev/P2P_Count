@@ -36,6 +36,6 @@ P2P Count is an iOS application designed to help traders efficiently calculate a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/p2p-crypto-calculator.git
+   git clone https://github.com/DanielMikheev/P2P_Count.git
 
 © 2025 P2P Count. All rights reserved.
